@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:app_qlphongtro_sv/hopdong/create_hopdong_screen.dart';
-import 'package:app_qlphongtro_sv/sinhvien/tt_sv_screen.dart';
+import 'package:app_qlphongtro_sv/feature/hopdong/create_hopdong_screen.dart';
+import 'package:app_qlphongtro_sv/feature/sinhvien/tt_sv_screen.dart';
 import 'package:flutter/material.dart';
 
 class ThongTinChiTietPhong extends StatefulWidget {

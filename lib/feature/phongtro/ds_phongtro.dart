@@ -1,6 +1,6 @@
 // ignore_for_file: sort_child_properties_last
 
-import 'package:app_qlphongtro_sv/phongtro/thongtin_phongtro.dart';
+import 'package:app_qlphongtro_sv/feature/phongtro/thongtin_phongtro.dart';
 import 'package:flutter/material.dart';
 
 class DSPhongTro extends StatefulWidget {

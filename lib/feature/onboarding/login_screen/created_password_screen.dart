@@ -1,4 +1,4 @@
-import 'package:app_qlphongtro_sv/onboarding/login_screen/login_screen.dart';
+import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class PasswordChangedScreen extends StatefulWidget {

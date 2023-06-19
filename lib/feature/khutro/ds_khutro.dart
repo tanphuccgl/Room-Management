@@ -1,4 +1,4 @@
-import 'package:app_qlphongtro_sv/phongtro/ds_phongtro.dart';
+import 'package:app_qlphongtro_sv/feature/phongtro/ds_phongtro.dart';
 import 'package:flutter/material.dart';
 
 class DSKhuTro extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:app_qlphongtro_sv/hopdong/ds_hopdong.dart';
+import 'package:app_qlphongtro_sv/feature/hopdong/ds_hopdong.dart';
 import 'package:flutter/material.dart';
 
 class TaoHopDong extends StatefulWidget {
