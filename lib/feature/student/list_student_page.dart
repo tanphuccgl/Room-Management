@@ -118,10 +118,10 @@ class _ListStudentPageState extends State<ListStudentPage> {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: filteredList.length,
+                    itemCount: state.list.length,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        title: Text(filteredList[index]),
+                        title: Text(state.list[index].name ?? ""),
                         onTap: () {
                           Navigator.push(
                             context,
