@@ -10,4 +10,10 @@ class UserRepositoryImpl extends UserRepository {
   Future<XResult<bool>> signIn(WUser user) {
     return reference.signIn(user);
   }
+
+  @override
+  Future<XResult<WUser>> login(
+      {required String email, required String password}) {
+    return reference.login(email: email, password: password);
+  }
 }
