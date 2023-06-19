@@ -5,5 +5,5 @@ class Endpoints {
   static const int receiveTimeout = 15000;
 
   // connectTimeout
-  static const int connectionTimeout = 10;
+  static const int connectionTimeout = 100;
 }
