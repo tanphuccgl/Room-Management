@@ -1,6 +1,6 @@
 import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/forgotpassword_screen.dart';
 import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/home_page_screen.dart';
-import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/register_screen.dart';
+import 'package:app_qlphongtro_sv/feature/sign_up/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -251,7 +251,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const RegisterScreen()));
+                              builder: (context) => const SignUpPage()));
                     },
                     child: const Text(
                       "  Register Now",
