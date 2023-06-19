@@ -10,4 +10,9 @@ class StudentRepositoryImpl extends StudentRepository {
   Future<XResult<bool>> postStudent(WStudent student) {
     return reference.postStudent(student);
   }
+
+  @override
+  Future<XResult<List<WStudent>>> getListStudent() {
+    return reference.getListStudent();
+  }
 }

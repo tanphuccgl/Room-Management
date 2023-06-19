@@ -26,4 +26,15 @@ class StudentCollectionReference extends BaseCollectionReference<WStudent> {
       return XResult.exception(e);
     }
   }
+
+  Future<XResult<List<WStudent>>> getListStudent() async {
+    try {
+      final userCollection = await ref.get();
+      final list = userCollection.docs.map((e) => e.data()).toList();
+
+      return XResult.success(list);
+    } catch (e) {
+      return XResult.exception(e);
+    }
+  }
 }
