@@ -1,9 +1,9 @@
 import 'dart:ui';
-import 'package:app_qlphongtro_sv/onboarding/login_screen/login_screen.dart';
-import 'package:app_qlphongtro_sv/onboarding/login_screen/register_screen.dart';
+import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/login_screen.dart';
+import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import '../../animated_btn.dart';
+import '../../../animated_btn.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});

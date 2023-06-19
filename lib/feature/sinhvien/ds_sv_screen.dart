@@ -1,7 +1,7 @@
 // ignore_for_file: sort_child_properties_last
 
-import 'package:app_qlphongtro_sv/onboarding/login_screen/home_page_screen.dart';
-import 'package:app_qlphongtro_sv/sinhvien/tt_sv_screen.dart';
+import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/home_page_screen.dart';
+import 'package:app_qlphongtro_sv/feature/sinhvien/tt_sv_screen.dart';
 import 'package:flutter/material.dart';
 
 class DSSinhVienThueSCreen extends StatefulWidget {

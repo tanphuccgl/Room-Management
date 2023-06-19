@@ -1,8 +1,8 @@
-import 'package:app_qlphongtro_sv/dichvu_profile/dichvu_screen.dart';
-import 'package:app_qlphongtro_sv/dichvu_profile/profile_screen.dart';
-import 'package:app_qlphongtro_sv/hoadon/ds_hoadon.dart';
-import 'package:app_qlphongtro_sv/khutro/ds_khutro.dart';
-import 'package:app_qlphongtro_sv/sinhvien/ds_sv_screen.dart';
+import 'package:app_qlphongtro_sv/feature/dichvu_profile/dichvu_screen.dart';
+import 'package:app_qlphongtro_sv/feature/dichvu_profile/profile_screen.dart';
+import 'package:app_qlphongtro_sv/feature/hoadon/ds_hoadon.dart';
+import 'package:app_qlphongtro_sv/feature/khutro/ds_khutro.dart';
+import 'package:app_qlphongtro_sv/feature/sinhvien/ds_sv_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 

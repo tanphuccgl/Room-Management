@@ -1,5 +1,5 @@
-import 'package:app_qlphongtro_sv/onboarding/login_screen/login_screen.dart';
-import 'package:app_qlphongtro_sv/onboarding/login_screen/otp_screen.dart';
+import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/login_screen.dart';
+import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/otp_screen.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
