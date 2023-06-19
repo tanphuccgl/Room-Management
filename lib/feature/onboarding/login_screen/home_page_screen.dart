@@ -2,7 +2,7 @@ import 'package:app_qlphongtro_sv/feature/dichvu_profile/dichvu_screen.dart';
 import 'package:app_qlphongtro_sv/feature/dichvu_profile/profile_screen.dart';
 import 'package:app_qlphongtro_sv/feature/hoadon/ds_hoadon.dart';
 import 'package:app_qlphongtro_sv/feature/khutro/ds_khutro.dart';
-import 'package:app_qlphongtro_sv/feature/sinhvien/ds_sv_screen.dart';
+import 'package:app_qlphongtro_sv/feature/student/list_student_page.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -149,7 +149,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const DSSinhVienThueSCreen()),
+                                      const ListStudentPage()),
                             );
                           },
                           child: Container(

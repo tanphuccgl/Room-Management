@@ -53,6 +53,11 @@ class SignUpBloc extends Cubit<SignUpState> {
     ));
     if (result.isSuccess) {
       Navigator.pop(context);
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Error')));
+
+      emit(state.copyWith(isLoading: false));
     }
 
     emit(state.copyWith(isLoading: false));
