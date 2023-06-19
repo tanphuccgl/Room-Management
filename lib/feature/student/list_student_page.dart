@@ -2,7 +2,7 @@
 
 import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/home_page_screen.dart';
 import 'package:app_qlphongtro_sv/feature/student/logic/list_student_bloc.dart';
-import 'package:app_qlphongtro_sv/feature/student/tt_sv_screen.dart';
+import 'package:app_qlphongtro_sv/feature/student/info_student_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -126,8 +126,8 @@ class _ListStudentPageState extends State<ListStudentPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ThongTinSinhVienThue(
-                                tenSinhVien: filteredList[index],
+                              builder: (context) => InfoStudentPage(
+                                id: state.list[index].id,
                               ),
                             ),
                           );

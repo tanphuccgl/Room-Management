@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:app_qlphongtro_sv/feature/hopdong/create_hopdong_screen.dart';
-import 'package:app_qlphongtro_sv/feature/student/tt_sv_screen.dart';
+import 'package:app_qlphongtro_sv/feature/student/info_student_page.dart';
 import 'package:flutter/material.dart';
 
 class ThongTinChiTietPhong extends StatefulWidget {
@@ -136,14 +136,15 @@ class _ThongTinChiTietPhongState extends State<ThongTinChiTietPhong> {
               const SizedBox(height: 8),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ThongTinSinhVienThue(
-                        tenSinhVien: widget.tenSinhVien,
-                      ),
-                    ),
-                  );
+                  //TODO
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => InfoStudentPage(
+                  //       tenSinhVien: widget.tenSinhVien,
+                  //     ),
+                  //   ),
+                  // );
                 },
                 child: TextField(
                   controller: tenSinhVienController,

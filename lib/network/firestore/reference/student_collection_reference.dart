@@ -37,4 +37,15 @@ class StudentCollectionReference extends BaseCollectionReference<WStudent> {
       return XResult.exception(e);
     }
   }
+
+  Future<XResult<WStudent>> getInfoStudent(String id) async {
+    try {
+      var snapshot = await ref.where('id', isEqualTo: id).limit(1).get();
+      final result = snapshot.docs.map((e) => e.data()).first;
+
+      return XResult.success(result);
+    } catch (e) {
+      return XResult.exception(e);
+    }
+  }
 }
