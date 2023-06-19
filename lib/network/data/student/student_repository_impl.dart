@@ -15,4 +15,9 @@ class StudentRepositoryImpl extends StudentRepository {
   Future<XResult<List<WStudent>>> getListStudent() {
     return reference.getListStudent();
   }
+
+  @override
+  Future<XResult<WStudent>> getInfoStudent(String id) {
+    return reference.getInfoStudent(id);
+  }
 }
