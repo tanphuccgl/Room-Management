@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/login_screen.dart';
+import 'package:app_qlphongtro_sv/feature/login/login_page.dart';
 import 'package:app_qlphongtro_sv/feature/sign_up/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
@@ -90,7 +90,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const LoginScreen()));
+                              builder: (context) => const LoginPage()));
                     },
                   ),
                   const SizedBox(

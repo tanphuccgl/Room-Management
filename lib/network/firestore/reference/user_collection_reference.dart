@@ -23,4 +23,20 @@ class UserCollectionReference extends BaseCollectionReference<WUser> {
       return XResult.exception(e);
     }
   }
+
+  Future<XResult<WUser>> login(
+      {required String email, required String password}) async {
+    try {
+      final userCollection = await ref
+          .where('email', isEqualTo: email)
+          .where('password', isEqualTo: password)
+          .limit(1)
+          .get();
+      var data = userCollection.docs.map((e) => e.data()).first;
+
+      return XResult.success(data);
+    } catch (e) {
+      return XResult.exception(e);
+    }
+  }
 }

@@ -1,18 +1,20 @@
-import 'package:app_qlphongtro_sv/feature/login/login_page.dart';
-import 'package:app_qlphongtro_sv/feature/sign_up/sign_up_bloc.dart';
+import 'package:app_qlphongtro_sv/feature/login/login_bloc.dart';
+import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/forgotpassword_screen.dart';
+import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/home_page_screen.dart';
+import 'package:app_qlphongtro_sv/feature/sign_up/sign_up_page.dart';
 import 'package:app_qlphongtro_sv/widgets/indicator.dart';
 import 'package:app_qlphongtro_sv/widgets/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => SignUpBloc(),
-      child: BlocBuilder<SignUpBloc, SignUpState>(
+      create: (_) => LoginBloc(),
+      child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
           return Scaffold(
             resizeToAvoidBottomInset: false,
@@ -36,7 +38,7 @@ class SignUpPage extends StatelessWidget {
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: const Text(
-                          "Hello! Đăng ký để bắt đầu",
+                          "Chào Mừng Trở lại! \nThật Vui Khi Gặp Lại.",
                           style: TextStyle(
                             fontSize: 35,
                             fontWeight: FontWeight.w700,
@@ -46,29 +48,40 @@ class SignUpPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     XInput(
-                      hintText: "UserName",
-                      value: state.username,
-                      onChanged: (value) =>
-                          context.read<SignUpBloc>().onChangedUsername(value),
-                    ),
-                    XInput(
-                      hintText: "Email",
+                      hintText: "Enter your email",
                       value: state.email,
                       onChanged: (value) =>
-                          context.read<SignUpBloc>().onChangedEmail(value),
+                          context.read<LoginBloc>().onChangedEmail(value),
                     ),
                     XInput(
-                      hintText: "Password",
+                      hintText: "Enter your password",
                       value: state.password,
                       onChanged: (value) =>
-                          context.read<SignUpBloc>().onChangedPassword(value),
+                          context.read<LoginBloc>().onChangedPassword(value),
                     ),
-                    XInput(
-                      hintText: "Confirm password",
-                      value: state.rePassword,
-                      onChanged: (value) =>
-                          context.read<SignUpBloc>().onChangedRePassword(value),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 10,
+                      ),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ForgotPasswordScreen()));
+                          },
+                          child: const Text(
+                            "Forgot Password ?",
+                            style: TextStyle(color: Color(0xff6A707C)),
+                          ),
+                        ),
+                      ),
                     ),
+                    const SizedBox(height: 25),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20,
@@ -85,12 +98,12 @@ class SignUpPage extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     onPressed: () => context
-                                        .read<SignUpBloc>()
-                                        .onRegister(context),
+                                        .read<LoginBloc>()
+                                        .onLogin(context),
                                     child: const Padding(
                                       padding: EdgeInsets.all(25.0),
                                       child: Text(
-                                        "Register",
+                                        "Login",
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 20,
@@ -118,7 +131,7 @@ class SignUpPage extends StatelessWidget {
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 10),
-                            child: Text("Or Register With"),
+                            child: Text("Or Login With"),
                           ),
                           Expanded(
                             child: Divider(
@@ -195,7 +208,7 @@ class SignUpPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            "Already have an account?",
+                            "Don’t have an account?",
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w400),
                           ),
@@ -204,10 +217,11 @@ class SignUpPage extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const LoginPage()));
+                                      builder: (context) =>
+                                          const SignUpPage()));
                             },
                             child: const Text(
-                              "  Login Now",
+                              "  Register Now",
                               style: TextStyle(
                                   color: Color(0xff35C2C1),
                                   fontSize: 16,
