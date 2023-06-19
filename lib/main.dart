@@ -1,8 +1,28 @@
 import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/onboarding_screen.dart';
-import 'package:flutter/material.dart';
+import 'package:app_qlphongtro_sv/firebase_options.dart';
+import 'package:app_qlphongtro_sv/network/domain_manager.dart';
 
-void main() {
+import 'package:app_qlphongtro_sv/utils/user_prefs.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  _locator();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  await UserPrefs.instance.initialize();
   runApp(const MyApp());
+}
+
+void _locator() {
+  GetIt.I.registerLazySingleton(() => DomainManager());
 }
 
 class MyApp extends StatelessWidget {
