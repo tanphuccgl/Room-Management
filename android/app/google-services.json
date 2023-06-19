@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1011328312096",
+    "project_id": "room-mangement",
+    "storage_bucket": "room-mangement.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011328312096:android:dcf706f2b6c34fd5a6ad45",
+        "android_client_info": {
+          "package_name": "com.example.app_qlphongtro_sv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1011328312096-t680mbf86i05pcgjq22lg37j08ulripd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6mFeXaM4EFqZTIMreumR_mrqnY5K8-Cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1011328312096-t680mbf86i05pcgjq22lg37j08ulripd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
