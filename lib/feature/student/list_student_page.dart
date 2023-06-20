@@ -6,38 +6,7 @@ import 'package:app_qlphongtro_sv/feature/student/info_student_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ListStudentPage extends StatefulWidget {
-  const ListStudentPage({super.key});
-
-  @override
-  State<ListStudentPage> createState() => _ListStudentPageState();
-}
-
-class _ListStudentPageState extends State<ListStudentPage> {
-  List<String> sinhVienList = [
-    'Ly Thi Minh Tam',
-    'Tran Dinh Duy',
-    'Le Van Tai',
-    // Danh sách sinh viên đã thuê phòng
-  ];
-
-  List<String> filteredList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    filteredList = sinhVienList;
-  }
-
-  void searchSinhVien(String keyword) {
-    setState(() {
-      filteredList = sinhVienList
-          .where((sinhVien) =>
-              sinhVien.toLowerCase().contains(keyword.toLowerCase()))
-          .toList();
-    });
-  }
-
+class ListStudentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -69,9 +38,7 @@ class _ListStudentPageState extends State<ListStudentPage> {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: TextField(
-                    onChanged: (value) {
-                      searchSinhVien(value);
-                    },
+                    onChanged: (value) {},
                     decoration: const InputDecoration(
                       hintText: 'Tìm kiếm sinh viên',
                       prefixIcon: Icon(Icons.search),
