@@ -48,4 +48,14 @@ class StudentCollectionReference extends BaseCollectionReference<WStudent> {
       return XResult.exception(e);
     }
   }
+
+  Future<XResult<bool>> removeStudent(String id) async {
+    try {
+      remove(id);
+
+      return XResult.success(true);
+    } catch (e) {
+      return XResult.exception(e);
+    }
+  }
 }

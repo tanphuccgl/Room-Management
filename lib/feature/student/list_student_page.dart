@@ -38,44 +38,6 @@ class _ListStudentPageState extends State<ListStudentPage> {
     });
   }
 
-  void showDeleteConfirmationDialog(String sinhVien) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Danh Sách Sinh Viên Thuê'),
-          content: Text('Bạn có muốn xóa sinh viên $sinhVien?'),
-          actions: [
-            OutlinedButton(
-              onPressed: () {
-                // Xử lý sự kiện khi ấn vào "Có"
-                // ...
-                Navigator.of(context).pop(); // Đóng hộp thoại
-              },
-              child: const Text('Có', style: TextStyle(color: Colors.black)),
-              style: OutlinedButton.styleFrom(
-                backgroundColor: const Color(0xFF6FC9E5),
-                side: const BorderSide(color: Colors.black),
-              ),
-            ),
-            OutlinedButton(
-              onPressed: () {
-                // Xử lý sự kiện khi ấn vào "Không"
-                // ...
-                Navigator.of(context).pop(); // Đóng hộp thoại
-              },
-              child: const Text('Không', style: TextStyle(color: Colors.black)),
-              style: OutlinedButton.styleFrom(
-                backgroundColor: const Color(0xFF6FC9E5),
-                side: const BorderSide(color: Colors.black),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -135,7 +97,10 @@ class _ListStudentPageState extends State<ListStudentPage> {
                         trailing: IconButton(
                           icon: const Icon(Icons.delete),
                           onPressed: () {
-                            showDeleteConfirmationDialog(filteredList[index]);
+                            context
+                                .read<ListStudentBloc>()
+                                .showDeleteConfirmationDialog(
+                                    context, state.list[index]);
                           },
                         ),
                       );

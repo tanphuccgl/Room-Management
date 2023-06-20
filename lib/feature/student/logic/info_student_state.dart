@@ -4,7 +4,7 @@ part of 'info_student_bloc.dart';
 class InfoStudentState extends Equatable {
   final WStudent student;
 
-  InfoStudentState({required this.student});
+  const InfoStudentState({required this.student});
 
   @override
   List<Object?> get props => [
