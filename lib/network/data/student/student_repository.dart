@@ -5,4 +5,5 @@ abstract class StudentRepository {
   Future<XResult<bool>> postStudent(WStudent student);
   Future<XResult<List<WStudent>>> getListStudent();
   Future<XResult<WStudent>> getInfoStudent(String id);
+  Future<XResult<bool>> removeStudent(String id);
 }

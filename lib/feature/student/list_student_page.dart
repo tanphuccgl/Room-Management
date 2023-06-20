@@ -6,76 +6,7 @@ import 'package:app_qlphongtro_sv/feature/student/info_student_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ListStudentPage extends StatefulWidget {
-  const ListStudentPage({super.key});
-
-  @override
-  State<ListStudentPage> createState() => _ListStudentPageState();
-}
-
-class _ListStudentPageState extends State<ListStudentPage> {
-  List<String> sinhVienList = [
-    'Ly Thi Minh Tam',
-    'Tran Dinh Duy',
-    'Le Van Tai',
-    // Danh sách sinh viên đã thuê phòng
-  ];
-
-  List<String> filteredList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    filteredList = sinhVienList;
-  }
-
-  void searchSinhVien(String keyword) {
-    setState(() {
-      filteredList = sinhVienList
-          .where((sinhVien) =>
-              sinhVien.toLowerCase().contains(keyword.toLowerCase()))
-          .toList();
-    });
-  }
-
-  void showDeleteConfirmationDialog(String sinhVien) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Danh Sách Sinh Viên Thuê'),
-          content: Text('Bạn có muốn xóa sinh viên $sinhVien?'),
-          actions: [
-            OutlinedButton(
-              onPressed: () {
-                // Xử lý sự kiện khi ấn vào "Có"
-                // ...
-                Navigator.of(context).pop(); // Đóng hộp thoại
-              },
-              child: const Text('Có', style: TextStyle(color: Colors.black)),
-              style: OutlinedButton.styleFrom(
-                backgroundColor: const Color(0xFF6FC9E5),
-                side: const BorderSide(color: Colors.black),
-              ),
-            ),
-            OutlinedButton(
-              onPressed: () {
-                // Xử lý sự kiện khi ấn vào "Không"
-                // ...
-                Navigator.of(context).pop(); // Đóng hộp thoại
-              },
-              child: const Text('Không', style: TextStyle(color: Colors.black)),
-              style: OutlinedButton.styleFrom(
-                backgroundColor: const Color(0xFF6FC9E5),
-                side: const BorderSide(color: Colors.black),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
+class ListStudentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -107,9 +38,7 @@ class _ListStudentPageState extends State<ListStudentPage> {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: TextField(
-                    onChanged: (value) {
-                      searchSinhVien(value);
-                    },
+                    onChanged: (value) {},
                     decoration: const InputDecoration(
                       hintText: 'Tìm kiếm sinh viên',
                       prefixIcon: Icon(Icons.search),
@@ -135,7 +64,10 @@ class _ListStudentPageState extends State<ListStudentPage> {
                         trailing: IconButton(
                           icon: const Icon(Icons.delete),
                           onPressed: () {
-                            showDeleteConfirmationDialog(filteredList[index]);
+                            context
+                                .read<ListStudentBloc>()
+                                .showDeleteConfirmationDialog(
+                                    context, state.list[index]);
                           },
                         ),
                       );
