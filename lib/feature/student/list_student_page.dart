@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ListStudentPage extends StatelessWidget {
+  const ListStudentPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

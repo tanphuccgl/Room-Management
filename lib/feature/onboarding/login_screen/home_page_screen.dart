@@ -1,7 +1,7 @@
 import 'package:app_qlphongtro_sv/feature/dichvu_profile/dichvu_screen.dart';
 import 'package:app_qlphongtro_sv/feature/dichvu_profile/profile_screen.dart';
 import 'package:app_qlphongtro_sv/feature/hoadon/ds_hoadon.dart';
-import 'package:app_qlphongtro_sv/feature/khutro/ds_khutro.dart';
+import 'package:app_qlphongtro_sv/feature/room/list_room_page.dart';
 import 'package:app_qlphongtro_sv/feature/student/list_student_page.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -148,7 +148,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ListStudentPage()),
+                                  builder: (context) =>
+                                      const ListStudentPage()),
                             );
                           },
                           child: Container(
@@ -188,7 +189,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const DSKhuTro()));
+                                    builder: (context) =>
+                                        const ListRoomPage()));
                           },
                           child: Container(
                             decoration: const BoxDecoration(
