@@ -1,4 +1,5 @@
 import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/onboarding_screen.dart';
+import 'package:app_qlphongtro_sv/feature/profile/logic/profile_bloc.dart';
 import 'package:app_qlphongtro_sv/firebase_options.dart';
 import 'package:app_qlphongtro_sv/network/domain_manager.dart';
 
@@ -6,6 +7,7 @@ import 'package:app_qlphongtro_sv/utils/user_prefs.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 Future<void> main() async {
@@ -23,6 +25,7 @@ Future<void> main() async {
 
 void _locator() {
   GetIt.I.registerLazySingleton(() => DomainManager());
+  GetIt.I.registerLazySingleton(() => ProfileBloc());
 }
 
 class MyApp extends StatelessWidget {
@@ -31,23 +34,30 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'The Flutter Way',
-      theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFFEEF1F8),
-        primarySwatch: Colors.blue,
-        fontFamily: "Intel",
-        inputDecorationTheme: const InputDecorationTheme(
-          filled: true,
-          fillColor: Colors.white,
-          errorStyle: TextStyle(height: 0),
-          border: defaultInputBorder,
-          enabledBorder: defaultInputBorder,
-          focusedBorder: defaultInputBorder,
-          errorBorder: defaultInputBorder,
-        ),
+    return BlocProvider(
+      create: (context) => ProfileBloc(),
+      child: BlocBuilder<ProfileBloc, ProfileState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'The Flutter Way',
+            theme: ThemeData(
+              scaffoldBackgroundColor: const Color(0xFFEEF1F8),
+              primarySwatch: Colors.blue,
+              fontFamily: "Intel",
+              inputDecorationTheme: const InputDecorationTheme(
+                filled: true,
+                fillColor: Colors.white,
+                errorStyle: TextStyle(height: 0),
+                border: defaultInputBorder,
+                enabledBorder: defaultInputBorder,
+                focusedBorder: defaultInputBorder,
+                errorBorder: defaultInputBorder,
+              ),
+            ),
+            home: const OnboardingScreen(),
+          );
+        },
       ),
-      home: const OnboardingScreen(),
     );
   }
 }

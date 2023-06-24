@@ -13,12 +13,12 @@ class UserCollectionReference extends BaseCollectionReference<WUser> {
               ),
         );
 
-  Future<XResult<bool>> signIn(WUser user) async {
+  Future<XResult<WUser>> signIn(WUser user) async {
     try {
       final userCollection = ref.doc(user.id);
       await userCollection.set(user);
 
-      return XResult.success(true);
+      return XResult.success(user);
     } catch (e) {
       return XResult.exception(e);
     }
