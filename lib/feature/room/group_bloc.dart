@@ -9,10 +9,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:uuid/uuid.dart';
 
-part "room_state.dart";
+part 'group_state.dart';
 
-class RoomBloc extends Cubit<RoomState> {
-  RoomBloc() : super(const RoomState()) {
+class GroupBloc extends Cubit<GroupState> {
+  GroupBloc() : super(const GroupState()) {
     getListGroup();
   }
   DomainManager get _domain => GetIt.I<DomainManager>();
@@ -22,8 +22,8 @@ class RoomBloc extends Cubit<RoomState> {
         context: context,
         builder: (_) {
           return BlocProvider.value(
-            value: context.read<RoomBloc>(),
-            child: BlocBuilder<RoomBloc, RoomState>(
+            value: context.read<GroupBloc>(),
+            child: BlocBuilder<GroupBloc, GroupState>(
               builder: (context, state) {
                 return AlertDialog(
                   title: const Text('Thêm khu trọ'),
@@ -34,14 +34,14 @@ class RoomBloc extends Cubit<RoomState> {
                         value: state.name,
                         hintText: 'Tên khu trọ',
                         onChanged: (value) =>
-                            context.read<RoomBloc>().onChangedName(value),
+                            context.read<GroupBloc>().onChangedName(value),
                       ),
                       const SizedBox(height: 5),
                       XInput(
                         value: state.place,
                         hintText: 'Địa chỉ',
                         onChanged: (value) =>
-                            context.read<RoomBloc>().onChangedPlace(value),
+                            context.read<GroupBloc>().onChangedPlace(value),
                       ),
                       const SizedBox(height: 5),
                       XInput(
@@ -49,7 +49,7 @@ class RoomBloc extends Cubit<RoomState> {
                         keyboardType: TextInputType.number,
                         hintText: 'Số phòng',
                         onChanged: (value) =>
-                            context.read<RoomBloc>().onChangedNumber(value),
+                            context.read<GroupBloc>().onChangedNumber(value),
                       ),
                       const SizedBox(height: 5),
                       XInput(
@@ -57,7 +57,7 @@ class RoomBloc extends Cubit<RoomState> {
                         keyboardType: TextInputType.number,
                         hintText: 'Số phòng trống',
                         onChanged: (value) => context
-                            .read<RoomBloc>()
+                            .read<GroupBloc>()
                             .onChangedNumberEmpty(value),
                       ),
                     ],
