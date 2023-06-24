@@ -10,6 +10,8 @@ class WRoom extends BaseModel {
   String? idGroup;
   bool? isEmpty;
   int? numberMember;
+  String? numberRoom;
+  String? idStudent;
 
   WRoom({
     required this.id,
@@ -17,6 +19,8 @@ class WRoom extends BaseModel {
     this.isEmpty,
     this.numberMember,
     this.idGroup,
+    this.numberRoom,
+    this.idStudent,
   });
 
   static WRoom fromMap(Map map, {String? id}) {
@@ -26,6 +30,8 @@ class WRoom extends BaseModel {
       name: map['name'],
       numberMember: map['numberMember'] ?? 0,
       idGroup: map['idGroup'] ?? "",
+      numberRoom: map['numberRoom'] ?? "",
+      idStudent: map['idStudent'] ?? "",
     );
   }
 
@@ -36,6 +42,8 @@ class WRoom extends BaseModel {
       name: map['name'],
       numberMember: map['numberMember'] ?? 0,
       idGroup: map['idGroup'] ?? "",
+      numberRoom: map['numberRoom'] ?? "",
+      idStudent: map['idStudent'] ?? "",
     );
   }
 
@@ -46,6 +54,8 @@ class WRoom extends BaseModel {
       "name": name,
       "numberMember": numberMember,
       "idGroup": idGroup,
+      "numberRoom": numberRoom,
+      "idStudent": idStudent,
     };
   }
 
@@ -63,6 +73,8 @@ class WRoom extends BaseModel {
       "name": name,
       "numberMember": numberMember,
       "idGroup": idGroup,
+      "numberRoom": numberRoom,
+      "idStudent": idStudent,
     };
   }
 
@@ -72,6 +84,8 @@ class WRoom extends BaseModel {
         idGroup: "",
         numberMember: 0,
         isEmpty: false,
+        numberRoom: "",
+        idStudent: "",
       );
 
   WRoom copyWith({
@@ -80,6 +94,8 @@ class WRoom extends BaseModel {
     String? idGroup,
     bool? isEmpty,
     int? numberMember,
+    String? numberRoom,
+    String? idStudent,
   }) {
     return WRoom(
       id: id ?? this.id,
@@ -87,6 +103,8 @@ class WRoom extends BaseModel {
       idGroup: idGroup ?? this.idGroup,
       isEmpty: isEmpty ?? this.isEmpty,
       numberMember: numberMember ?? this.numberMember,
+      numberRoom: numberRoom ?? this.numberRoom,
+      idStudent: idStudent ?? this.idStudent,
     );
   }
 }
