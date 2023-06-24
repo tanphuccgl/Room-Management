@@ -1,5 +1,7 @@
-import 'package:app_qlphongtro_sv/network/model/common/base_model.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:app_qlphongtro_sv/network/model/common/base_model.dart';
 
 class WUser extends BaseModel {
   // ignore: annotate_overrides, overridden_fields
@@ -8,12 +10,18 @@ class WUser extends BaseModel {
   String? username;
   String? email;
   String? password;
+  String? totalGroup;
+  String? totalRoom;
+  String? totalRoomFull;
 
   WUser({
     required this.id,
     this.email,
     this.username,
     this.password,
+    this.totalGroup,
+    this.totalRoom,
+    this.totalRoomFull,
   });
 
   static WUser fromMap(Map map, {String? id}) {
@@ -22,6 +30,9 @@ class WUser extends BaseModel {
       email: map['email'],
       username: map['username'],
       password: map['password'] ?? '',
+      totalGroup: map['totalGroup'] ?? '',
+      totalRoom: map['totalRoom'] ?? '',
+      totalRoomFull: map['totalRoomFull'] ?? '',
     );
   }
 
@@ -31,6 +42,9 @@ class WUser extends BaseModel {
       email: map['email'],
       username: map['username'],
       password: map['password'] ?? '',
+      totalGroup: map['totalGroup'] ?? '',
+      totalRoom: map['totalRoom'] ?? '',
+      totalRoomFull: map['totalRoomFull'] ?? '',
     );
   }
 
@@ -40,6 +54,9 @@ class WUser extends BaseModel {
       "email": email,
       "username": username,
       "password": password,
+      "totalGroup": totalGroup,
+      "totalRoom": totalRoom,
+      "totalRoomFull": totalRoomFull,
     };
   }
 
@@ -56,27 +73,38 @@ class WUser extends BaseModel {
       "email": email,
       "username": username,
       "password": password,
+      "totalGroup": totalGroup,
+      "totalRoom": totalRoom,
+      "totalRoomFull": totalRoomFull,
     };
   }
 
   factory WUser.empty() => WUser(
-        id: '',
-        username: '',
-        email: '',
-        password: "",
-      );
+      id: '',
+      username: '',
+      email: '',
+      password: "",
+      totalGroup: "",
+      totalRoom: "",
+      totalRoomFull: "");
 
   WUser copyWith({
     String? id,
-    String? password,
     String? username,
     String? email,
+    String? password,
+    String? totalGroup,
+    String? totalRoom,
+    String? totalRoomFull,
   }) {
     return WUser(
       id: id ?? this.id,
       username: username ?? this.username,
       email: email ?? this.email,
       password: password ?? this.password,
+      totalGroup: totalGroup ?? this.totalGroup,
+      totalRoom: totalRoom ?? this.totalRoom,
+      totalRoomFull: totalRoomFull ?? this.totalRoomFull,
     );
   }
 }

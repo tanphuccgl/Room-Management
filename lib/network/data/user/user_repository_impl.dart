@@ -7,7 +7,7 @@ class UserRepositoryImpl extends UserRepository {
   final reference = UserCollectionReference();
 
   @override
-  Future<XResult<bool>> signIn(WUser user) {
+  Future<XResult<WUser>> signIn(WUser user) {
     return reference.signIn(user);
   }
 
