@@ -12,10 +12,29 @@ import 'package:uuid/uuid.dart';
 part 'group_state.dart';
 
 class GroupBloc extends Cubit<GroupState> {
-  GroupBloc() : super(const GroupState()) {
+  GroupBloc() : super(GroupState(updateGroup: WGroup.empty())) {
     getListGroup();
   }
   DomainManager get _domain => GetIt.I<DomainManager>();
+
+  Future<void> getInfoGroup(BuildContext context, String id) async {
+    final result = await _domain.groupRepository.getInfoGroup(id);
+    if (result.isSuccess) {
+      emit(state.copyWith(updateGroup: result.data));
+      onChangedName(result.data!.name ?? "");
+
+      onChangedPlace(result.data!.place ?? "");
+
+      onChangedNumber(result.data!.numberRoom.toString());
+
+      onChangedNumberEmpty(result.data!.numberEmpty.toString());
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Error')));
+
+      return;
+    }
+  }
 
   void onFloadingButton(BuildContext context) {
     showDialog(
@@ -27,40 +46,42 @@ class GroupBloc extends Cubit<GroupState> {
               builder: (context, state) {
                 return AlertDialog(
                   title: const Text('Thêm khu trọ'),
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      XInput(
-                        value: state.name,
-                        hintText: 'Tên khu trọ',
-                        onChanged: (value) =>
-                            context.read<GroupBloc>().onChangedName(value),
-                      ),
-                      const SizedBox(height: 5),
-                      XInput(
-                        value: state.place,
-                        hintText: 'Địa chỉ',
-                        onChanged: (value) =>
-                            context.read<GroupBloc>().onChangedPlace(value),
-                      ),
-                      const SizedBox(height: 5),
-                      XInput(
-                        value: state.number,
-                        keyboardType: TextInputType.number,
-                        hintText: 'Số phòng',
-                        onChanged: (value) =>
-                            context.read<GroupBloc>().onChangedNumber(value),
-                      ),
-                      const SizedBox(height: 5),
-                      XInput(
-                        value: state.numberEmpty,
-                        keyboardType: TextInputType.number,
-                        hintText: 'Số phòng trống',
-                        onChanged: (value) => context
-                            .read<GroupBloc>()
-                            .onChangedNumberEmpty(value),
-                      ),
-                    ],
+                  content: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        XInput(
+                          value: state.name,
+                          hintText: 'Tên khu trọ',
+                          onChanged: (value) =>
+                              context.read<GroupBloc>().onChangedName(value),
+                        ),
+                        const SizedBox(height: 5),
+                        XInput(
+                          value: state.place,
+                          hintText: 'Địa chỉ',
+                          onChanged: (value) =>
+                              context.read<GroupBloc>().onChangedPlace(value),
+                        ),
+                        const SizedBox(height: 5),
+                        XInput(
+                          value: state.number,
+                          keyboardType: TextInputType.number,
+                          hintText: 'Số phòng',
+                          onChanged: (value) =>
+                              context.read<GroupBloc>().onChangedNumber(value),
+                        ),
+                        const SizedBox(height: 5),
+                        XInput(
+                          value: state.numberEmpty,
+                          keyboardType: TextInputType.number,
+                          hintText: 'Số phòng trống',
+                          onChanged: (value) => context
+                              .read<GroupBloc>()
+                              .onChangedNumberEmpty(value),
+                        ),
+                      ],
+                    ),
                   ),
                   actions: <Widget>[
                     TextButton(
@@ -76,6 +97,75 @@ class GroupBloc extends Cubit<GroupState> {
                       },
                     ),
                   ],
+                );
+              },
+            ),
+          );
+        });
+  }
+
+  void onUpdateButton(BuildContext context, WGroup group) async {
+    await getInfoGroup(context, group.id);
+    showDialog(
+        context: context,
+        builder: (_) {
+          return BlocProvider.value(
+            value: context.read<GroupBloc>(),
+            child: BlocBuilder<GroupBloc, GroupState>(
+              builder: (context, state) {
+                return SingleChildScrollView(
+                  child: AlertDialog(
+                    title: const Text('Chỉnh sửa khu trọ'),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        XInput(
+                          value: state.name,
+                          hintText: 'Tên khu trọ',
+                          onChanged: (value) =>
+                              context.read<GroupBloc>().onChangedName(value),
+                        ),
+                        const SizedBox(height: 5),
+                        XInput(
+                          value: state.place,
+                          hintText: 'Địa chỉ',
+                          onChanged: (value) =>
+                              context.read<GroupBloc>().onChangedPlace(value),
+                        ),
+                        const SizedBox(height: 5),
+                        XInput(
+                          value: state.number,
+                          keyboardType: TextInputType.number,
+                          hintText: 'Số phòng',
+                          onChanged: (value) =>
+                              context.read<GroupBloc>().onChangedNumber(value),
+                        ),
+                        const SizedBox(height: 5),
+                        XInput(
+                          value: state.numberEmpty,
+                          keyboardType: TextInputType.number,
+                          hintText: 'Số phòng trống',
+                          onChanged: (value) => context
+                              .read<GroupBloc>()
+                              .onChangedNumberEmpty(value),
+                        ),
+                      ],
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                        child: const Text('Hủy'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      TextButton(
+                        child: const Text('Cập nhật'),
+                        onPressed: () {
+                          updateStudent(context);
+                        },
+                      ),
+                    ],
+                  ),
                 );
               },
             ),
@@ -123,9 +213,11 @@ class GroupBloc extends Cubit<GroupState> {
       getListGroup();
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('Success')));
+      emit(GroupState(updateGroup: WGroup.empty()));
     } else {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('Error')));
+      emit(GroupState(updateGroup: WGroup.empty()));
     }
   }
 
@@ -167,9 +259,43 @@ class GroupBloc extends Cubit<GroupState> {
       Navigator.pop(context);
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('Success')));
+      emit(GroupState(updateGroup: WGroup.empty()));
     } else {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('Error')));
+      emit(GroupState(updateGroup: WGroup.empty()));
+
+      return;
+    }
+  }
+
+  Future<void> updateStudent(BuildContext context) async {
+    if (state.name.isEmpty ||
+        state.place.isEmpty ||
+        state.number.isEmpty ||
+        state.numberEmpty.isEmpty) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Error')));
+
+      return;
+    }
+    final result =
+        await _domain.groupRepository.postGroup(state.updateGroup.copyWith(
+      name: state.name,
+      numberEmpty: int.parse(state.numberEmpty),
+      place: state.place,
+      numberRoom: int.parse(state.number),
+    ));
+    if (result.isSuccess) {
+      getListGroup();
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Success')));
+      emit(GroupState(updateGroup: WGroup.empty()));
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Error')));
+      emit(GroupState(updateGroup: WGroup.empty()));
 
       return;
     }

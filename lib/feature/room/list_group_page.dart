@@ -94,6 +94,14 @@ class ListGroupPage extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           IconButton(
+                            icon: const Icon(Icons.edit),
+                            color: const Color(0xFF6FC9E5),
+                            onPressed: () {
+                              context.read<GroupBloc>().onUpdateButton(
+                                  context, state.listGroup[index]);
+                            },
+                          ),
+                          IconButton(
                             icon: const Icon(Icons.delete),
                             color: Colors.grey,
                             onPressed: () {

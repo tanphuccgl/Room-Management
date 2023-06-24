@@ -7,12 +7,14 @@ class GroupState extends Equatable {
   final String place;
   final String number;
   final String numberEmpty;
+  final WGroup updateGroup;
   const GroupState({
     this.listGroup = const [],
     this.name = "",
     this.place = "",
     this.number = "",
     this.numberEmpty = "",
+    required this.updateGroup,
   });
   @override
   // TODO: implement props
@@ -22,6 +24,7 @@ class GroupState extends Equatable {
         place,
         number,
         numberEmpty,
+        updateGroup,
       ];
 
   GroupState copyWith({
@@ -30,6 +33,7 @@ class GroupState extends Equatable {
     String? place,
     String? number,
     String? numberEmpty,
+    WGroup? updateGroup,
   }) {
     return GroupState(
       listGroup: listGroup ?? this.listGroup,
@@ -37,6 +41,7 @@ class GroupState extends Equatable {
       place: place ?? this.place,
       number: number ?? this.number,
       numberEmpty: numberEmpty ?? this.numberEmpty,
+      updateGroup: updateGroup ?? this.updateGroup,
     );
   }
 }
