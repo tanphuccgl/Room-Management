@@ -161,7 +161,7 @@ class RoomBloc extends Cubit<RoomState> {
                   TextButton(
                     child: const Text('Lưu'),
                     onPressed: () {
-                      updateStudent(context);
+                      updateRoom(context);
                     },
                   ),
                 ],
@@ -263,7 +263,7 @@ class RoomBloc extends Cubit<RoomState> {
     }
   }
 
-  Future<void> updateStudent(BuildContext context) async {
+  Future<void> updateRoom(BuildContext context) async {
     if (state.name.isEmpty || state.numberMember.isEmpty) {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('Error')));
