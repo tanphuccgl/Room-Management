@@ -17,7 +17,6 @@ class GroupState extends Equatable {
     required this.updateGroup,
   });
   @override
-  // TODO: implement props
   List<Object?> get props => [
         listGroup,
         name,

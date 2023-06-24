@@ -11,7 +11,6 @@ class OTPState extends Equatable {
       {this.text1 = "", this.text2 = "", this.text3 = "", this.text4 = ""});
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
         text1,
         text2,
