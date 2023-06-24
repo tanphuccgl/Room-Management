@@ -1,14 +1,9 @@
 import 'package:app_qlphongtro_sv/feature/login/login_page.dart';
 import 'package:flutter/material.dart';
 
-class PasswordChangedScreen extends StatefulWidget {
+class PasswordChangedScreen extends StatelessWidget {
   const PasswordChangedScreen({super.key});
 
-  @override
-  State<PasswordChangedScreen> createState() => _PasswordChangedScreenState();
-}
-
-class _PasswordChangedScreenState extends State<PasswordChangedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

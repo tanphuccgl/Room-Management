@@ -16,4 +16,14 @@ class UserRepositoryImpl extends UserRepository {
       {required String email, required String password}) {
     return reference.login(email: email, password: password);
   }
+
+  @override
+  Future<XResult<WUser>> queryEmail(String email) {
+    return reference.queryEmail(email);
+  }
+
+  @override
+  Future<XResult<bool>> resetPassword(WUser user, String password) {
+    return reference.resetPassword(user, password);
+  }
 }

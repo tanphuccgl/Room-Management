@@ -5,4 +5,6 @@ abstract class UserRepository {
   Future<XResult<bool>> signIn(WUser user);
   Future<XResult<WUser>> login(
       {required String email, required String password});
+  Future<XResult<WUser>> queryEmail(String email);
+  Future<XResult<bool>> resetPassword(WUser user, String password);
 }

@@ -39,4 +39,27 @@ class UserCollectionReference extends BaseCollectionReference<WUser> {
       return XResult.exception(e);
     }
   }
+
+  Future<XResult<WUser>> queryEmail(String email) async {
+    try {
+      final userCollection =
+          await ref.where('email', isEqualTo: email).limit(1).get();
+      var data = userCollection.docs.map((e) => e.data()).first;
+
+      return XResult.success(data);
+    } catch (e) {
+      return XResult.exception(e);
+    }
+  }
+
+  Future<XResult<bool>> resetPassword(WUser user, String password) async {
+    try {
+      final userCollection = ref.doc(user.id);
+      await userCollection.set(user.copyWith(password: password));
+
+      return XResult.success(true);
+    } catch (e) {
+      return XResult.exception(e);
+    }
+  }
 }
