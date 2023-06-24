@@ -8,7 +8,6 @@ class BillState extends Equatable {
     this.listBill = const [],
   });
   @override
-  // TODO: implement props
   List<Object?> get props => [
         listBill,
       ];

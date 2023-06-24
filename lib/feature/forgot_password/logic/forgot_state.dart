@@ -8,7 +8,6 @@ class ForgotPasswordState extends Equatable {
   const ForgotPasswordState({this.email = "", required this.user});
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
         email,
         user,

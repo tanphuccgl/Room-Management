@@ -15,7 +15,6 @@ class RoomState extends Equatable {
     required this.updateroom,
   });
   @override
-  // TODO: implement props
   List<Object?> get props => [
         listroom,
         name,
