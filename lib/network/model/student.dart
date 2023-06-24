@@ -1,5 +1,7 @@
-import 'package:app_qlphongtro_sv/network/model/common/base_model.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:app_qlphongtro_sv/network/model/common/base_model.dart';
 
 class WStudent extends BaseModel {
   // ignore: annotate_overrides, overridden_fields
@@ -12,6 +14,7 @@ class WStudent extends BaseModel {
   String? place;
   String? numberId;
   String? dateOfBirth;
+  String? idContract;
 
   WStudent({
     required this.id,
@@ -22,6 +25,7 @@ class WStudent extends BaseModel {
     this.place,
     this.numberId,
     this.dateOfBirth,
+    this.idContract,
   });
 
   static WStudent fromMap(Map map, {String? id}) {
@@ -34,6 +38,7 @@ class WStudent extends BaseModel {
       numberId: map['numberId'] ?? '',
       email: map['email'] ?? '',
       dateOfBirth: map['dateOfBirth'] ?? "",
+      idContract: map['idContract'] ?? "",
     );
   }
 
@@ -47,6 +52,7 @@ class WStudent extends BaseModel {
       gender: map['gender'] ?? '',
       numberId: map['numberId'] ?? '',
       dateOfBirth: map["dateOfBirth"] ?? "",
+      idContract: map['idContract'] ?? "",
     );
   }
 
@@ -60,6 +66,7 @@ class WStudent extends BaseModel {
       "phone": phone,
       "place": place,
       "dateOfBirth": dateOfBirth,
+      "idContract": idContract
     };
   }
 
@@ -80,6 +87,7 @@ class WStudent extends BaseModel {
       "phone": phone,
       "place": place,
       "dateOfBirth": dateOfBirth,
+      "idContract": idContract
     };
   }
 
@@ -92,27 +100,30 @@ class WStudent extends BaseModel {
         numberId: "",
         place: "",
         dateOfBirth: "",
+        idContract: "",
       );
 
   WStudent copyWith({
     String? id,
-    String? phone,
     String? name,
-    String? email,
     String? gender,
-    String? numberId,
+    String? phone,
+    String? email,
     String? place,
+    String? numberId,
     String? dateOfBirth,
+    String? idContract,
   }) {
     return WStudent(
       id: id ?? this.id,
       name: name ?? this.name,
-      email: email ?? this.email,
-      phone: phone ?? this.phone,
       gender: gender ?? this.gender,
-      numberId: numberId ?? this.numberId,
+      phone: phone ?? this.phone,
+      email: email ?? this.email,
       place: place ?? this.place,
+      numberId: numberId ?? this.numberId,
       dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+      idContract: idContract ?? this.idContract,
     );
   }
 }
