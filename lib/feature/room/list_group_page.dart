@@ -1,16 +1,16 @@
 import 'package:app_qlphongtro_sv/feature/phongtro/ds_phongtro.dart';
-import 'package:app_qlphongtro_sv/feature/room/room_bloc.dart';
+import 'package:app_qlphongtro_sv/feature/room/group_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ListRoomPage extends StatelessWidget {
-  const ListRoomPage({super.key});
+class ListGroupPage extends StatelessWidget {
+  const ListGroupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => RoomBloc(),
-      child: BlocBuilder<RoomBloc, RoomState>(
+      create: (_) => GroupBloc(),
+      child: BlocBuilder<GroupBloc, GroupState>(
         builder: (context, state) {
           return Scaffold(
             backgroundColor: Colors.white,
@@ -94,11 +94,19 @@ class ListRoomPage extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           IconButton(
+                            icon: const Icon(Icons.edit),
+                            color: const Color(0xFF6FC9E5),
+                            onPressed: () {
+                              context.read<GroupBloc>().onUpdateButton(
+                                  context, state.listGroup[index]);
+                            },
+                          ),
+                          IconButton(
                             icon: const Icon(Icons.delete),
                             color: Colors.grey,
                             onPressed: () {
                               context
-                                  .read<RoomBloc>()
+                                  .read<GroupBloc>()
                                   .xoaKhuTro(context, state.listGroup[index]);
                             },
                           ),
@@ -116,7 +124,7 @@ class ListRoomPage extends StatelessWidget {
                 color: Colors.black,
               ),
               onPressed: () {
-                context.read<RoomBloc>().onFloadingButton(context);
+                context.read<GroupBloc>().onFloadingButton(context);
               },
             ),
           );
