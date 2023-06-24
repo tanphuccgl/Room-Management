@@ -1,5 +1,6 @@
-import 'package:app_qlphongtro_sv/feature/phongtro/ds_phongtro.dart';
-import 'package:app_qlphongtro_sv/feature/room/group_bloc.dart';
+import 'package:app_qlphongtro_sv/feature/group/group_bloc.dart';
+import 'package:app_qlphongtro_sv/feature/room/list_room.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,7 +31,9 @@ class ListGroupPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const DSPhongTro(),
+                        builder: (context) => DSPhongTro(
+                          idGroup: state.listGroup[index].id,
+                        ),
                       ),
                     );
                   },
