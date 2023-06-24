@@ -1,8 +1,8 @@
 // ignore_for_file: sort_child_properties_last
 
-import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/home_page_screen.dart';
 import 'package:app_qlphongtro_sv/feature/student/logic/list_student_bloc.dart';
 import 'package:app_qlphongtro_sv/feature/student/info_student_page.dart';
+import 'package:app_qlphongtro_sv/feature/student/update_student_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -63,66 +63,36 @@ class ListStudentPage extends StatelessWidget {
                             ),
                           );
                         },
-                        trailing: IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () {
-                            context
-                                .read<ListStudentBloc>()
-                                .showDeleteConfirmationDialog(
-                                    context, state.list[index]);
-                          },
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.edit),
+                              color: const Color(0xFF6FC9E5),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => UpdateStudentPage(
+                                      id: state.list[index].id,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.delete),
+                              onPressed: () {
+                                context
+                                    .read<ListStudentBloc>()
+                                    .showDeleteConfirmationDialog(
+                                        context, state.list[index]);
+                              },
+                            ),
+                          ],
                         ),
                       );
                     },
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(right: 8.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const HomePageScreen()));
-                          },
-                          child: const Text(
-                            'Trang chủ',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF6FC9E5),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(left: 8.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // Xử lý sự kiện khi ấn nút "Xuất File Excel"
-                            // ...
-                          },
-                          child: const Text(
-                            'Xuất File Excel',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF6FC9E5),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
                 ),
               ],
