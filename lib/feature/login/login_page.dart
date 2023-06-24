@@ -1,5 +1,5 @@
 import 'package:app_qlphongtro_sv/feature/login/login_bloc.dart';
-import 'package:app_qlphongtro_sv/feature/onboarding/login_screen/forgotpassword_screen.dart';
+import 'package:app_qlphongtro_sv/feature/forgot_password/forgot_password_page.dart';
 import 'package:app_qlphongtro_sv/feature/sign_up/sign_up_page.dart';
 import 'package:app_qlphongtro_sv/widgets/indicator.dart';
 import 'package:app_qlphongtro_sv/widgets/input.dart';
@@ -16,7 +16,6 @@ class LoginPage extends StatelessWidget {
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
           return Scaffold(
-            resizeToAvoidBottomInset: false,
             backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.white,
