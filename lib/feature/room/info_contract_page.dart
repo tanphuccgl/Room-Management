@@ -1,8 +1,9 @@
 // ignore_for_file: library_private_types_in_public_api, must_be_immutable
 
-import 'package:app_qlphongtro_sv/feature/hopdong/create_hopdong_screen.dart';
+import 'package:app_qlphongtro_sv/feature/room/create_contract_page.dart';
 import 'package:app_qlphongtro_sv/feature/room/logic/info_contract_bloc.dart';
 import 'package:app_qlphongtro_sv/feature/room/logic/room_bloc.dart';
+import 'package:app_qlphongtro_sv/feature/room/view_contract_page.dart';
 import 'package:app_qlphongtro_sv/widgets/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,12 +27,12 @@ class InfoContractPage extends StatelessWidget {
     return BlocProvider.value(
       value: contextRoom.read<RoomBloc>(),
       child: BlocBuilder<RoomBloc, RoomState>(
-        builder: (context1, stateRoom) {
+        builder: (contextRoom, stateRoom) {
           return BlocProvider(
             create: (context) =>
                 InfoContractBloc()..getInforoom(context, idRoom),
             child: BlocBuilder<InfoContractBloc, InfoContractState>(
-              builder: (context, state) {
+              builder: (contextInfoContract, state) {
                 return Scaffold(
                   backgroundColor: Colors.white,
                   appBar: AppBar(
@@ -76,7 +77,7 @@ class InfoContractPage extends StatelessWidget {
                             value: state.name,
                             hintText: 'Tên phòng',
                             readOnly: !state.isEdit,
-                            onChanged: (value) => context
+                            onChanged: (value) => contextInfoContract
                                 .read<InfoContractBloc>()
                                 .onChangedName(value),
                           ),
@@ -85,7 +86,7 @@ class InfoContractPage extends StatelessWidget {
                             keyboardType: TextInputType.number,
                             hintText: 'Số người',
                             readOnly: !state.isEdit,
-                            onChanged: (value) => context
+                            onChanged: (value) => contextInfoContract
                                 .read<InfoContractBloc>()
                                 .onChangedNumberMember(value),
                           ),
@@ -94,7 +95,7 @@ class InfoContractPage extends StatelessWidget {
                             keyboardType: TextInputType.number,
                             hintText: 'Số phòng',
                             readOnly: !state.isEdit,
-                            onChanged: (value) => context
+                            onChanged: (value) => contextInfoContract
                                 .read<InfoContractBloc>()
                                 .onChangedNumberRoom(value),
                           ),
@@ -105,9 +106,9 @@ class InfoContractPage extends StatelessWidget {
                               readOnly: true,
                               onTap: () {
                                 if (state.isEdit) {
-                                  context
+                                  contextInfoContract
                                       .read<InfoContractBloc>()
-                                      .showListStudent(context);
+                                      .showListStudent(contextInfoContract);
                                 }
                               }),
                           const SizedBox(height: 16),
@@ -131,13 +132,31 @@ class InfoContractPage extends StatelessWidget {
                                 width: 150, // Đặt chiều rộng cố định cho nút
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const TaoHopDong(),
-                                      ),
-                                    );
+                                    (state.room.idContract ?? "").isEmpty
+                                        ? Navigator.push(
+                                            contextInfoContract,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  CreateContractPage(
+                                                contextRoom: contextRoom,
+                                                contextInfoContract:
+                                                    contextInfoContract,
+                                                room: state.room,
+                                              ),
+                                            ),
+                                          )
+                                        : Navigator.push(
+                                            contextInfoContract,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ViewContractPage(
+                                                idContract:
+                                                    state.room.idContract ?? "",
+                                                idStudent:
+                                                    state.room.idStudent ?? "",
+                                              ),
+                                            ),
+                                          );
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: const Color(0xFF6FC9E5),
@@ -145,7 +164,10 @@ class InfoContractPage extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(50.0),
                                     ),
                                   ),
-                                  child: const Text('Tạo hợp đồng'),
+                                  child: Text(
+                                      (state.room.idContract ?? "").isEmpty
+                                          ? 'Tạo hợp đồng'
+                                          : "Xem hợp đồng"),
                                 ),
                               ),
                               const SizedBox(
@@ -155,14 +177,14 @@ class InfoContractPage extends StatelessWidget {
                                 child: ElevatedButton(
                                   onPressed: () {
                                     if (!state.isEdit) {
-                                      context
+                                      contextInfoContract
                                           .read<InfoContractBloc>()
                                           .onChangedEdit();
                                     } else {
-                                      context
+                                      contextInfoContract
                                           .read<InfoContractBloc>()
-                                          .updateRoom(context);
-                                      context
+                                          .updateRoom(contextInfoContract);
+                                      contextInfoContract
                                           .read<InfoContractBloc>()
                                           .onChangedEdit();
                                     }

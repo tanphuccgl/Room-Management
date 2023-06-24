@@ -154,9 +154,25 @@ class InfoContractBloc extends Cubit<InfoContractState> {
       numberMember: int.parse(state.numberMember),
     ));
     if (result.isSuccess) {
+      getInforoom(context, state.room.id);
       context.read<RoomBloc>().getListRoom(state.room.idGroup ?? "");
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('Success')));
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Error')));
+
+      return;
+    }
+  }
+
+  Future<void> updateContractToRoom(
+      BuildContext context, WRoom room, String idContract) async {
+    final result = await _domain.roomRepository.postroom(room.copyWith(
+      idContract: idContract,
+    ));
+    if (result.isSuccess) {
+      context.read<RoomBloc>().getListRoom(state.room.idGroup ?? "");
     } else {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('Error')));

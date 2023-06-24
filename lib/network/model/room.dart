@@ -12,6 +12,7 @@ class WRoom extends BaseModel {
   int? numberMember;
   String? numberRoom;
   String? idStudent;
+  String? idContract;
 
   WRoom({
     required this.id,
@@ -21,6 +22,7 @@ class WRoom extends BaseModel {
     this.idGroup,
     this.numberRoom,
     this.idStudent,
+    this.idContract,
   });
 
   static WRoom fromMap(Map map, {String? id}) {
@@ -32,6 +34,7 @@ class WRoom extends BaseModel {
       idGroup: map['idGroup'] ?? "",
       numberRoom: map['numberRoom'] ?? "",
       idStudent: map['idStudent'] ?? "",
+      idContract: map['idContract'] ?? "",
     );
   }
 
@@ -44,6 +47,7 @@ class WRoom extends BaseModel {
       idGroup: map['idGroup'] ?? "",
       numberRoom: map['numberRoom'] ?? "",
       idStudent: map['idStudent'] ?? "",
+      idContract: map['idContract'] ?? "",
     );
   }
 
@@ -56,6 +60,7 @@ class WRoom extends BaseModel {
       "idGroup": idGroup,
       "numberRoom": numberRoom,
       "idStudent": idStudent,
+      "idContract": idContract,
     };
   }
 
@@ -75,6 +80,7 @@ class WRoom extends BaseModel {
       "idGroup": idGroup,
       "numberRoom": numberRoom,
       "idStudent": idStudent,
+      "idContract": idContract,
     };
   }
 
@@ -86,6 +92,7 @@ class WRoom extends BaseModel {
         isEmpty: false,
         numberRoom: "",
         idStudent: "",
+        idContract: "",
       );
 
   WRoom copyWith({
@@ -96,6 +103,7 @@ class WRoom extends BaseModel {
     int? numberMember,
     String? numberRoom,
     String? idStudent,
+    String? idContract,
   }) {
     return WRoom(
       id: id ?? this.id,
@@ -105,6 +113,7 @@ class WRoom extends BaseModel {
       numberMember: numberMember ?? this.numberMember,
       numberRoom: numberRoom ?? this.numberRoom,
       idStudent: idStudent ?? this.idStudent,
+      idContract: idContract ?? this.idContract,
     );
   }
 }

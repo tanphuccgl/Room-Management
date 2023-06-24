@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
+import 'package:app_qlphongtro_sv/feature/room/view_contract_page.dart';
 import 'package:app_qlphongtro_sv/feature/student/logic/info_student_bloc.dart';
 import 'package:app_qlphongtro_sv/widgets/input.dart';
 import 'package:flutter/material.dart';
@@ -79,15 +80,15 @@ class InfoStudentPage extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      //TODO
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => ThongTinHopDongTungSV(
-                      //       tenSinhVien: widget.tenSinhVien,
-                      //     ),
-                      //   ),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ViewContractPage(
+                            idContract: state.student.idContract ?? "",
+                            idStudent: state.student.id,
+                          ),
+                        ),
+                      );
                     },
                     child: const Text('Xem hợp đồng'),
                   ),

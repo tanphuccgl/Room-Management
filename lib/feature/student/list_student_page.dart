@@ -37,16 +37,6 @@ class ListStudentPage extends StatelessWidget {
             body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: TextField(
-                    onChanged: (value) {},
-                    decoration: const InputDecoration(
-                      hintText: 'Tìm kiếm sinh viên',
-                      prefixIcon: Icon(Icons.search),
-                    ),
-                  ),
-                ),
                 Expanded(
                   child: ListView.builder(
                     itemCount: state.list.length,
